@@ -3,26 +3,89 @@
   <head>
     <meta charset="UTF-8" />
     <title>COVID-19 Tracker</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 0;
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      select {
+        display: block;
+        margin-bottom: 20px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      h2 {
+        margin: 0 0 10px 0;
+      }
+
+      p {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .stats {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .confirmed {
+        color: orange;
+      }
+
+      .deaths {
+        color: red;
+      }
+
+      .recovered {
+        color: green;
+      }
+    </style>
   </head>
   <body>
-    <h1>COVID-19 Tracker</h1>
-    <div>
-      <label for="countries">Select a country:</label>
-      <select id="countries"></select>
+    <div class="container">
+      <h1>COVID-19 Tracker</h1>
+      <div>
+        <label for="countries">Select a country:</label>
+        <select id="countries"></select>
+      </div>
+      <div class="stats">
+        <div>
+          <h2>Confirmed Cases:</h2>
+          <p id="confirmed" class="confirmed"></p>
+        </div>
+        <div>
+          <h2>Deaths:</h2>
+          <p id="deaths" class="deaths"></p>
+        </div>
+        <div>
+          <h2>Recovered:</h2>
+          <p id="recovered" class="recovered"></p>
+        </div>
+      </div>
     </div>
-    <div>
-      <h2>Confirmed Cases:</h2>
-      <p id="confirmed"></p>
-    </div>
-    <div>
-      <h2>Deaths:</h2>
-      <p id="deaths"></p>
-    </div>
-    <div>
-      <h2>Recovered:</h2>
-      <p id="recovered"></p>
-    </div>
-    
+
     <script>
       const countriesSelect = document.getElementById("countries");
       const confirmedCases = document.getElementById("confirmed");
@@ -40,7 +103,8 @@
             countriesSelect.appendChild(option);
           });
         });
-        // Get data for the selected country from the API
+
+      // Get data for the selected country from the API
       countriesSelect.addEventListener("change", () => {
         const selectedCountry = countriesSelect.value;
         if (selectedCountry) {
