@@ -22,3 +22,21 @@
       <h2>Recovered:</h2>
       <p id="recovered"></p>
     </div>
+    
+    <script>
+      const countriesSelect = document.getElementById("countries");
+      const confirmedCases = document.getElementById("confirmed");
+      const deaths = document.getElementById("deaths");
+      const recovered = document.getElementById("recovered");
+
+      // Populate the countries dropdown list with data from the API
+      fetch("https://api.covid19api.com/countries")
+        .then((response) => response.json())
+        .then((data) => {
+          data.forEach((country) => {
+            const option = document.createElement("option");
+            option.value = country.Slug;
+            option.textContent = country.Country;
+            countriesSelect.appendChild(option);
+          });
+        });
