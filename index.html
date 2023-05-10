@@ -40,3 +40,24 @@
             countriesSelect.appendChild(option);
           });
         });
+        // Get data for the selected country from the API
+      countriesSelect.addEventListener("change", () => {
+        const selectedCountry = countriesSelect.value;
+        if (selectedCountry) {
+          fetch(`https://api.covid19api.com/total/country/${selectedCountry}`)
+            .then((response) => response.json())
+            .then((data) => {
+              const latestData = data[data.length - 1];
+              confirmedCases.textContent = latestData.Confirmed.toLocaleString();
+              deaths.textContent = latestData.Deaths.toLocaleString();
+              recovered.textContent = latestData.Recovered.toLocaleString();
+            });
+        } else {
+          confirmedCases.textContent = "";
+          deaths.textContent = "";
+          recovered.textContent = "";
+        }
+      });
+    </script>
+  </body>
+</html>
